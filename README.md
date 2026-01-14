@@ -19,11 +19,12 @@ body {
     overflow: hidden;
 }
 
+/* หนังสือ */
 .book {
     width: 330px;
     height: 500px;
     perspective: 2500px;
-    cursor: pointer;
+    position: relative;
 }
 
 .page {
@@ -40,10 +41,16 @@ body {
     backface-visibility: hidden;
 }
 
+/* ลำดับหน้า */
+#p1 { z-index: 3; }
+#p2 { z-index: 2; }
+#p3 { z-index: 1; }
+
 .page.flipped {
     transform: rotateY(-180deg);
 }
 
+/* เค้ก */
 .cake {
     position: relative;
     width: 180px;
@@ -68,6 +75,7 @@ body {
     margin: 0 auto;
 }
 
+/* เทียน */
 .candles {
     display: flex;
     justify-content: center;
@@ -101,6 +109,7 @@ body {
     to { transform: scale(0.85); }
 }
 
+/* ควัน */
 .smoke {
     width: 12px;
     height: 12px;
@@ -116,6 +125,7 @@ body {
     to { transform: translateY(-30px) scale(1.6); opacity: 0; }
 }
 
+/* ข้อความ */
 .note {
     margin-top: 20px;
     font-size: 15px;
@@ -123,6 +133,7 @@ body {
     text-align: center;
 }
 
+/* พลุ */
 .fireworks {
     position: absolute;
     inset: 0;
@@ -139,6 +150,16 @@ body {
     from { background-position: 0 0; }
     to { background-position: 70px 70px; }
 }
+
+/* สติ๊กเกอร์ */
+.sticker {
+    position: absolute;
+    font-size: 28px;
+}
+.s1 { top: 12px; left: 12px; }
+.s2 { top: 12px; right: 12px; }
+.s3 { bottom: 12px; left: 12px; }
+.s4 { bottom: 12px; right: 12px; }
 
 .tap {
     position: absolute;
@@ -159,7 +180,13 @@ body {
 
 <div class="book" onclick="nextPage()">
 
+    <!-- หน้า 1 -->
     <div class="page" id="p1">
+        <div class="sticker s1">🧸</div>
+        <div class="sticker s2">💙</div>
+        <div class="sticker s3">🐰</div>
+        <div class="sticker s4">⭐</div>
+
         <div class="cake">
             <div class="layer"></div>
             <div class="layer"></div>
@@ -169,13 +196,13 @@ body {
 
         <div class="note">
             สุขสันต์วันเกิดนะครับ พี่พิม 💙<br><br>
-            ถึงก่อนหน้าจะมีเรื่องที่ไม่ดีเข้ามามากมาย  
-            แต่หลังวันเกิดขอให้พี่ได้เจอแต่สิ่งดีๆ  
-            เฮงๆ รวยๆ และสุขภาพแข็งแรงนะครับ
+            ขอให้หลังจากนี้มีแต่สิ่งดีๆ  
+            มีความสุขมากๆ นะครับ
         </div>
         <div class="tap">👆 แตะเพื่อเปิดหน้า</div>
     </div>
 
+    <!-- หน้า 2 -->
     <div class="page" id="p2">
         <div class="cake">
             <div class="candles">
@@ -196,6 +223,7 @@ body {
         <div class="tap">👆 แตะอีกครั้ง</div>
     </div>
 
+    <!-- หน้า 3 -->
     <div class="page" id="p3">
         <div class="fireworks"></div>
 
@@ -212,7 +240,7 @@ body {
         </div>
 
         <div class="note" style="font-size:20px;">
-            🎉 HAPPY BIRTH DAY TO YOU 🎉<br>
+            🎉 HAPPY BIRTHDAY TO YOU 🎉<br>
             💐🎂💙
         </div>
     </div>
@@ -223,10 +251,18 @@ body {
 let page = 0;
 function nextPage() {
     page++;
-    if (page === 1) document.getElementById("p1").classList.add("flipped");
+
+    if (page === 1) {
+        document.getElementById("p1").classList.add("flipped");
+    }
+
     if (page === 2) {
         document.getElementById("p2").classList.add("flipped");
         document.getElementById("blow").play();
+    }
+
+    if (page === 3) {
+        document.getElementById("p3").classList.add("flipped");
     }
 }
 </script>
